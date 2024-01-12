@@ -19,10 +19,14 @@ public class Grid {
 //
 //    }
 //
-//    //Helper method for deleting an input from a co-ordinate
-//    private int[] rowDel(int input,int[] row,int column) {
-//
-//    }
+    //Helper method for deleting an input from a co-ordinate
+    private int[] rowDel(int input,int[] row,int column) {
+
+    }
+
+    private int[][] gridDisplay() {
+
+    }
 
     //Helper method for ensuring numbers from 1-9 aren't reused when creating solution
     public static int[] oneToNine(int[] array) {
