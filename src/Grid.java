@@ -1,4 +1,22 @@
 public class Grid {
+    int[] row1a;
+    int[] row2a;
+    int[] row3a;
+    int[] row4a;
+    int[] row5a;
+    int[] row6a;
+    int[] row7a;
+    int[] row8a;
+    int[] row9a;
+    int[] row1b;
+    int[] row2b;
+    int[] row3b;
+    int[] row4b;
+    int[] row5b;
+    int[] row6b;
+    int[] row7b;
+    int[] row8b;
+    int[] row9b;
 //    private int[][] solution = new int[9][9];
 //    /* Initialize and edit grid
 //    Make a method for creating rows, and editing them (both adding and subtracting characters
@@ -20,16 +38,16 @@ public class Grid {
 //    }
 //
     //Helper method for deleting an input from a co-ordinate
-    private int[] rowDel(int input,int[] row,int column) {
-
-    }
-
-    private int[][] gridDisplay() {
-
-    }
+//    private int[] rowDel(int input,int[] row,int column) {
+//
+//    }
+//
+//    private int[][] gridDisplay() {
+//
+//    }
 
     //Helper method for ensuring numbers from 1-9 aren't reused when creating solution
-    public static int[] oneToNine(int[] array) {
+    public static void oneToNine(int[] array, int num) {
         boolean one = false;
         boolean two = false;
         boolean three = false;
@@ -41,39 +59,39 @@ public class Grid {
         boolean nine = false;
         int count = 0;
         for (int i : array) {
-            if (i == 1) {
+            if (i == 1 && num != 1) {
                 one = true;
                 count++;
             }
-            if (i == 2) {
+            if (i == 2 && num != 2) {
                 two = true;
                 count++;
             }
-            if (i == 3) {
+            if (i == 3 && num != 3) {
                 three = true;
                 count++;
             }
-            if (i == 4) {
+            if (i == 4 && num != 4) {
                 four = true;
                 count++;
             }
-            if (i == 5) {
+            if (i == 5 && num != 5) {
                 five = true;
                 count++;
             }
-            if (i == 6) {
+            if (i == 6 && num != 6) {
                 six = true;
                 count++;
             }
-            if (i == 7) {
+            if (i == 7 && num != 7) {
                 seven = true;
                 count++;
             }
-            if (i == 8) {
+            if (i == 8 && num != 8) {
                 eight = true;
                 count++;
             }
-            if (i == 9) {
+            if (i == 9 && num != 9) {
                 nine = true;
                 count++;
             }
@@ -109,6 +127,14 @@ public class Grid {
                 ret[i] = 9;
             }
         }
-        return ret;
+        System.out.print("\nret: ");
+        for (int j : ret) {
+            System.out.print(j + ", ");
+        }
+        array = ret;
+        System.out.print("\narray: ");
+        for (int k : array) {
+            System.out.print(k + ", ");
+        }
     }
 }
