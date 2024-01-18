@@ -1,31 +1,17 @@
 public class Grid {
-    int[] row1a;
-    int[] row2a;
-    int[] row3a;
-    int[] row4a;
-    int[] row5a;
-    int[] row6a;
-    int[] row7a;
-    int[] row8a;
-    int[] row9a;
-    int[] row1b;
-    int[] row2b;
-    int[] row3b;
-    int[] row4b;
-    int[] row5b;
-    int[] row6b;
-    int[] row7b;
-    int[] row8b;
-    int[] row9b;
-//    private int[][] solution = new int[9][9];
+    private String[][] solution;
+    private String[][] display;
+
 //    /* Initialize and edit grid
 //    Make a method for creating rows, and editing them (both adding and subtracting characters
 //    Make another method for putting together the rows in a string to be printed
 //    Store the completed grid in either 9 int[] or 1 int[][] */
-//
-//    public void gridInitialize() {
-//
-//    }
+
+    public void gridInitialize() {
+        solution = new String[9][9];
+        for ()
+        display = solution;
+    }
 //
 //    //Helper method for adding an input to a co-ordinate
 //    private int[] rowAdd(int input,int[] row,int column) {
@@ -126,15 +112,6 @@ public class Grid {
                 nine = false;
                 ret[i] = 9;
             }
-        }
-        System.out.print("\nret: ");
-        for (int j : ret) {
-            System.out.print(j + ", ");
-        }
-        array = ret;
-        System.out.print("\narray: ");
-        for (int k : array) {
-            System.out.print(k + ", ");
         }
     }
 }
