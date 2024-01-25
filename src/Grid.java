@@ -1,3 +1,4 @@
+import java.util.Random;
 public class Grid {
     private String[][] solution;
     private String[][] display;
@@ -5,113 +6,93 @@ public class Grid {
 //    /* Initialize and edit grid
 //    Make a method for creating rows, and editing them (both adding and subtracting characters
 //    Make another method for putting together the rows in a string to be printed
-//    Store the completed grid in either 9 int[] or 1 int[][] */
+//    Store the completed grid in either 9 int[] or 1 int[][] or smt like taht idk*/
 
-    public void gridInitialize() {
+    public Grid() {
         solution = new String[9][9];
-        for ()
-        display = solution;
+        initializeSolvedSudoku();
+        printSudokuGrid(solution);
     }
-//
-//    //Helper method for adding an input to a co-ordinate
-//    private int[] rowAdd(int input,int[] row,int column) {
-//
-//    }
-//
-//    //Helper method for tagging an input to a co-ordinate
-//    private int[] rowTag(int input,int[] row,int column) {
-//
-//    }
-//
-    //Helper method for deleting an input from a co-ordinate
-//    private int[] rowDel(int input,int[] row,int column) {
-//
-//    }
-//
-//    private int[][] gridDisplay() {
-//
-//    }
 
-    //Helper method for ensuring numbers from 1-9 aren't reused when creating solution
-    public static void oneToNine(int[] array, int num) {
-        boolean one = false;
-        boolean two = false;
-        boolean three = false;
-        boolean four = false;
-        boolean five = false;
-        boolean six = false;
-        boolean seven = false;
-        boolean eight = false;
-        boolean nine = false;
-        int count = 0;
-        for (int i : array) {
-            if (i == 1 && num != 1) {
-                one = true;
-                count++;
-            }
-            if (i == 2 && num != 2) {
-                two = true;
-                count++;
-            }
-            if (i == 3 && num != 3) {
-                three = true;
-                count++;
-            }
-            if (i == 4 && num != 4) {
-                four = true;
-                count++;
-            }
-            if (i == 5 && num != 5) {
-                five = true;
-                count++;
-            }
-            if (i == 6 && num != 6) {
-                six = true;
-                count++;
-            }
-            if (i == 7 && num != 7) {
-                seven = true;
-                count++;
-            }
-            if (i == 8 && num != 8) {
-                eight = true;
-                count++;
-            }
-            if (i == 9 && num != 9) {
-                nine = true;
-                count++;
-            }
-        }
-        int[] ret = new int[count];
-        for (int i = 0; i < count; i++) {
-            if (one) {
-                one = false;
-                ret[i] = 1;
-            } else if (two) {
-                two = false;
-                ret[i] = 2;
-            } else if (three) {
-                three = false;
-                ret[i] = 3;
-            } else if (four) {
-                four = false;
-                ret[i] = 4;
-            } else if (five) {
-                five = false;
-                ret[i] = 5;
-            } else if (six) {
-                six = false;
-                ret[i] = 6;
-            } else if (seven) {
-                seven = false;
-                ret[i] = 7;
-            } else if (eight) {
-                eight = false;
-                ret[i] = 8;
-            } else if (nine) {
-                nine = false;
-                ret[i] = 9;
+    public void initializeSolvedSudoku() {
+        int[][] intGrid = generateCompletedSudoku();
+
+        if (intGrid != null) {
+            for (int i = 0; i < 9; i++) {
+                for (int j = 0; j < 9; j++) {
+                    solution[i][j] = Integer.toString(intGrid[i][j]);
+                }
             }
         }
     }
+
+    private boolean solveSudoku(int[][] grid) {
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 9; col++) {
+                if (grid[row][col] == 0) {
+                    for (int num = 1; num <= 9; num++) {
+                        if (isValidMove(grid, row, col, num)) {
+                            grid[row][col] = num;
+                            if (solveSudoku(grid)) {
+                                return true;
+                            }
+                            grid[row][col] = 0;
+                        }
+                    }
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    private boolean isValidMove(int[][] grid, int row, int column, int num) {
+        for (int i = 0; i < 9; i++) {
+            if (grid[row][i] == num || grid[i][column] == num) {
+                return false;
+            }
+        }
+        int startRow = row - row % 3;
+        int startCol = column - column % 3;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (grid[i + startRow][j + startCol] == num) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    private int[][] generateCompletedSudoku() {
+        int[][] grid = new int[9][9];
+
+        if (solveSudoku(grid)) {
+            return grid;
+        }
+
+        return null;
+    }
+
+    private void printSudokuGrid(String[][] grid) {
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 9; col++) {
+                System.out.print(grid[row][col] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    private void shuffleArray(int[] array) {
+        Random random = new Random();
+        for (int i = array.length - 1; i > 0; i--) {
+            int index = random.nextInt(i + 1);
+            int temp = array[i];
+            array[i] = array[index];
+            array[index] = temp;
+        }
+    }
+
 }
